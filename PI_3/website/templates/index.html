@@ -1,0 +1,15 @@
+<h1>PI-3</h1>
+
+{{ name }}
+
+<ul>
+    {% for item in relacao_servivos_disponiveis %}
+
+        {% if item == 'eletrica injecao eletronica' %}
+            <li><b>{{item}}</b></li>
+        {% else %}
+            <li>{{item}}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
