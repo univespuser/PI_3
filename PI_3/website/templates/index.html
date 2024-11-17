@@ -1,15 +1,54 @@
-<h1>PI-3</h1>
+<head>
+    <title>PI-3</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body class="is-preload">
+   
+    {{ name }}
 
-{{ name }}
-
-<ul>
-    {% for item in relacao_servivos_disponiveis %}
+    <ul>
+        {% for item in relacao_servivos_disponiveis %}
 
         {% if item == 'eletrica injecao eletronica' %}
-            <li><b>{{item}}</b></li>
+        <li><b>{{item}}</b></li>
         {% else %}
-            <li>{{item}}</li>
+        <li>{{item}}</li>
         {% endif %}
-    {% endfor %}
-</ul>
+        {% endfor %}
+    </ul>
 
+    <ul>
+        {% for post in posts %}
+        <p>
+            <i>nome:</i> <b>{{ post.nome }}</b><br>
+            <i>cpf:</i> <b>{{ post.cpf }}</b><br>
+            <i>servico:</i> <b>{{ post.servico }}</b><br>
+            <i>tipo:</i> <b>{{ post.tipo }}</b><br>
+            <i>aprovado:</i> <b>{{ post.aprovado }}</b><br>
+
+            <a href="{% url 'post_detail' post.id %}" class="button">veja mais</a>
+
+            {% endfor %}
+    </ul>
+
+    <section id="three">
+        <div class="row">
+            <div class="col-8 col-12-small">
+                <form method="post" action="{% url 'ss_form' %}">
+                    {% csrf_token%}
+                    <div class="row gtr-uniform gtr-50">
+                        <div class="col-6 col-12-xsmall"><input type="text" name="nome" id="nome" placeholder="Nome" /></div>
+                        <div class="col-6 col-12-xsmall"><input type="text" name="cpf" id="cpf" placeholder="CPF" /></div>
+                        <div class="col-6 col-12-xsmall"><input type="text" name="celular" id="celular" placeholder="Celular" /></div>
+                        <div class="col-6 col-12-xsmall"><input type="text" name="placa" id="placa" placeholder="Placa" /></div>
+                        <div class="col-6 col-12-xsmall"><input type="text" name="modelo" id="modelo" placeholder="Modelo" /></div>
+                        <div class="col-12"><textarea name="descricao" id="descricao" placeholder="Descricao" rows="4"></textarea></div>
+                    </div>
+                    <input type="submit" value="Solicita Servico" />
+                </form>
+            </div>
+        </div>
+    </section>
+</body>
